@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                
-                checkout scm
+                git branch 'main', url: 'https://github.com/kshitijshri99/que1.git'
             }
         }
 
@@ -16,7 +15,7 @@ pipeline {
             }
         }
 
-        stage('Run & Display Output') {
+        stage('Execute') {
             steps {
                 
                 sh 'java hello'
