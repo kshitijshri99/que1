@@ -4,8 +4,23 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-		git branch: 'main', url: 'https://github.com/kshitijshri99/jenkins_new.git'
+                
+                checkout scm
+            }
+        }
+
+        stage('Compile') {
+            steps {
+                
+                sh 'javac hello.java'
+            }
+        }
+
+        stage('Run & Display Output') {
+            steps {
+                
+                sh 'java hello'
             }
         }
     }
-}
+}}
