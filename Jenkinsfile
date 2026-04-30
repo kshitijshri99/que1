@@ -4,21 +4,21 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/kshitijshri99/que1.git'
+                git 'https://github.com/kshitijshri99/jenkins_new.git'
             }
         }
 
-        stage('Compile') {
+        stage('Docker Build') {
             steps {
-                
-                sh 'javac hello.java'
+                script {
+                    sh 'docker build -t my-java-app:${BUILD_NUMBER} .'
+                }
             }
         }
 
-        stage('Execute') {
+        stage('Run Container') {
             steps {
-                
-                sh 'java hello'
+                sh 'docker run --rm my-java-app:${BUILD_NUMBER}'
             }
         }
     }
