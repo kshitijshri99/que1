@@ -11,6 +11,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
+		    sh 'ls -al'	
                     sh 'docker build -t my-java-app:${BUILD_NUMBER} .'
                 }
             }
