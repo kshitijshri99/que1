@@ -2,8 +2,8 @@ pipeline {
     agent any
     
     environment {
-        DOCKER_IMAGE = "kshitijshri99/que1"
-        DOCKER_TAG = "${env.BUILD_ID}"
+        DOCKER_IMAGE = 'kshitijshri99/que1'
+        DOCKER_TAG = '${env.BUILD_ID}'
     }
 
     stages {
@@ -16,8 +16,8 @@ pipeline {
         stage('Build & Tag Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} ."
-                    sh "docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest"
+                    sh 'docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .'
+                    sh 'docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest'
                 }
             }
         }
@@ -37,8 +37,8 @@ pipeline {
 
     post {
         always {
-            sh "docker rmi -f ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest || true"
-            sh "docker logout"
+            sh 'docker rmi -f ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest || true'
+            sh 'docker logout'
         }
     }
 }
