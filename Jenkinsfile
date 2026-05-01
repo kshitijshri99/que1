@@ -22,18 +22,17 @@ pipeline {
             }
         }
 
-        stage('Push to DockerHub') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', 
-                                  passwordVariable: 'Sriksh@99', 
-                                  usernameVariable: 'kshitijshri@99')]) {
-                    
-                    sh 'echo "$Sriksh@99" | docker login -u "$kshitijshri99"-password-stdin'
-                    sh 'docker push ${DOCKER_IMAGE}:${DOCKER_TAG}'
-                    sh 'docker push ${DOCKER_IMAGE}:latest'
-                }
-            }
+       stage('Push to DockerHub') {
+	    steps {
+       		 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', 
+                         passwordVariable: 'Sriksh@99', 
+                         usernameVariable: 'kshitijshri99')]) {
+           	 sh 'echo "${Sriksh@99}" | docker login -u "${kshitijshri99}" --password-stdin'
+         	 sh 'docker push kshitijshri99/que1:2'
+          	 sh 'docker push kshitijshri99/que1:latest'
         }
+    }
+}
     }
 
     post {
